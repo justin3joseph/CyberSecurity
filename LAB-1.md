@@ -10,7 +10,7 @@
 ### Objective:
 Understand the Linux shell, basic commands, and how to navigate the file system.
 
-### Lab Activities (90 min)
+### Lab Activities
 
 #### 1. Basic File & Directory Commands
 ```bash
@@ -44,7 +44,7 @@ ls --help           # Quick help
 ### Objective:
 Learn user management and file permission control.
 
-### Lab Activities (90 min)
+### Lab Activities
 
 #### 1. User and Group Commands *(May require sudo)*
 ```bash
@@ -76,7 +76,7 @@ chown user:group file.txt  # Change owner
 ### Objective:
 Learn basic network diagnostics and system recon.
 
-### Lab Activities (90 min)
+### Lab Activities
 
 #### 1. Check IP & Interfaces
 ```bash
