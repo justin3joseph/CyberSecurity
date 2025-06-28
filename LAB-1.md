@@ -1,17 +1,16 @@
 
-# Cybersecurity Lab Plan – Week 1
+# Cybersecurity Lab
 
-### 🔍 Focus: Linux fundamentals, user permissions, and basic networking  
-### ⏱️ Duration: 2 Hours/Day
+### Focus: Linux fundamentals, user permissions, and basic networking  
 
 ---
 
-## 📅 Day 1: Introduction + Linux Essentials
+## Introduction + Linux Essentials
 
-### 🎯 Objective:
+### Objective:
 Understand the Linux shell, basic commands, and how to navigate the file system.
 
-### 🧪 Lab Activities (90 min)
+### Lab Activities (90 min)
 
 #### 1. Basic File & Directory Commands
 ```bash
@@ -40,12 +39,12 @@ ls --help           # Quick help
 
 ---
 
-## 📅 Day 2: Users, Groups, and Permissions
+## Users, Groups, and Permissions
 
-### 🎯 Objective:
+### Objective:
 Learn user management and file permission control.
 
-### 🧪 Lab Activities (90 min)
+### Lab Activities (90 min)
 
 #### 1. User and Group Commands *(May require sudo)*
 ```bash
@@ -72,12 +71,12 @@ chown user:group file.txt  # Change owner
 
 ---
 
-## 📅 Day 3: Network Utilities in Linux
+## Network Utilities in Linux
 
-### 🎯 Objective:
+### Objective:
 Learn basic network diagnostics and system recon.
 
-### 🧪 Lab Activities (90 min)
+### Lab Activities (90 min)
 
 #### 1. Check IP & Interfaces
 ```bash
@@ -102,17 +101,17 @@ ss -tuln                  # Modern alternative to netstat
 
 ---
 
-## 📅 Day 4: Setup Kali Linux / AWS EC2 *(Optional / Cloud Lab)*
+## Setup Kali Linux / AWS EC2 *(Optional / Cloud Lab)*
 
-### 🎯 Objective:
+### Objective:
 Set up a security-focused lab environment.
 
-#### 🖥️ Option A: Install Kali Linux (Local VM)
+#### Option A: Install Kali Linux (Local VM)
 - Download Kali from: https://www.kali.org/get-kali/
 - Use VirtualBox or VMware
 - Set 2GB RAM, 2 CPU, and bridged networking
 
-#### ☁️ Option B: AWS EC2 Setup
+#### Option B: AWS EC2 Setup
 - Launch Ubuntu/Kali EC2 Instance
 - Choose `t2.micro`, set key pair
 - SSH into instance:
@@ -127,9 +126,9 @@ sudo apt install net-tools traceroute nmap curl -y
 
 ---
 
-## 📅 Day 5: Review and Mini Project
+## Review and Mini Project
 
-### 🛠️ Mini Task: "System Health Check Script"
+### Mini Task: "System Health Check Script"
 
 Create a bash script called `healthcheck.sh` that:
 - Shows current user
